@@ -6,10 +6,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Objects;
 
 
-public class TDAArbol {
+public class TDAArbol implements Serializable {
     private Nodo raiz = new Nodo();
 
     // Constructores
@@ -28,17 +29,12 @@ public class TDAArbol {
         return raiz.getFreq();
     }
     
-    // Codifica texto de un archivo txt
-    // Guarda el mensaje codificado en un txt
-    // Almacena el arbol en un archivo binario
     
-    
-    // Retorna el texto codificado
-    // Reemplaza los caracteres del texto por los codigos correspondientes
     public String codificar(String texto) {
         codificarHojas(raiz, "");
         String codigo = "";
         for (int i = 0; i < texto.length(); i++) {
+            // Reemplaza los caracteres del texto por los codigos correspondientes
             codigo += buscarCodigo(raiz, texto.charAt(i), "");
         }
         
@@ -75,6 +71,7 @@ public class TDAArbol {
                 fs.close();
             } catch (Exception ex) {}
         }
+        // Retorna el texto codificado para imprimirlo
         return codigo;
     }
     

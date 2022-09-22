@@ -1,10 +1,11 @@
 
 package ed1_proyectotdasavanzados;
 
+import java.io.Serializable;
 import java.util.*;
 
 
-public class Nodo {
+public class Nodo implements Serializable {
     // Lista de adyacencia
     private ArrayList<Nodo> listaAdy = new ArrayList();
     // Caracter almacenado (solo en hojas)

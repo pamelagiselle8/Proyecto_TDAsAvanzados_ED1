@@ -220,13 +220,12 @@ public class Main {
                 ObjectInputStream objeto = new ObjectInputStream(entrada);
                 try {
                     arbol = (TDAArbol)objeto.readObject();
-                    if (arbol != null)
-                        System.out.println(arbol.toString());
                 } catch (EOFException e) {}
                 objeto.close();
                 entrada.close();
             }            
         } catch (Exception ex) {
+            ex.printStackTrace();
             System.out.println("\nNo se encontro el archivo binario.\n");
         }
         return arbol;
