@@ -11,7 +11,6 @@ public class Main {
         String opcion = menuPrincipal(), subOpcion = "", txt = "";
         ArrayList<Nodo> caracteres = new ArrayList();
         
-        
         while (!opcion.equals("3")) {
             switch (opcion) {
                 case "1": {
@@ -22,7 +21,7 @@ public class Main {
                             case "1": {
                                 // Codificador de Huffman
                                 System.out.print("\nIngrese el nombre del archivo de texto a codificar: ");
-                                // Contenido de un archivo de texto
+                                // Contenido del archivo de texto
                                 txt = cargarArchivoTxt(lea.nextLine());
                                 if (!txt.isEmpty()) {
                                     for (int i = 0; i < txt.length(); i++) {
@@ -38,7 +37,7 @@ public class Main {
                                     caracteres.sort(Comparator.comparing(Nodo::getFreq));
                                     try {
                                         // Crear el arbol binario de caracteres y frecuencias
-                                        TDAArbol arbol = new TDAArbol((crearArbol(caracteres, caracteres)));
+                                        TDAArbol arbol = new TDAArbol((crearArbol(caracteres)));
                                         // Imprimir el texto codificado
                                         System.out.println("\nCodigo de Huffman:\n" + arbol.codificar(txt)
                                                            + "\n\nDatos guardados exitosamente.");
@@ -58,7 +57,7 @@ public class Main {
                                     // Leer arbol binario de un archivo binario
                                     TDAArbol arbol = cargarArchivoBin(lea.nextLine());
                                     if (arbol != null)
-                                        System.out.println("\nTexto decodificado\n" + arbol.decodificar(txt, ""));
+                                        System.out.println("\nTexto decodificado:\n" + arbol.decodificar(txt, ""));
                                 }
                                 break;
                             }
@@ -166,7 +165,7 @@ public class Main {
     }
     
     // Crea el arbol binario para el codigo Huffman
-    public static Nodo crearArbol(ArrayList<Nodo> nodos, ArrayList<Nodo> originales) {
+    public static Nodo crearArbol(ArrayList<Nodo> nodos) {
         switch (nodos.size()) {
             case 1:
                 // Caso en que solo haya un nodo
@@ -184,7 +183,7 @@ public class Main {
                     raices.add(nodos.get(nodos.size()-1));
                 // Ordenar lista de raices
                 raices.sort(Comparator.comparing(Nodo::getFreq));
-                return crearArbol(raices, originales);
+                return crearArbol(raices);
         }
     }
     
@@ -201,8 +200,6 @@ public class Main {
             sc = new Scanner(archivo);
             while (sc.hasNextLine())
                 contenido += sc.nextLine();
-                if (sc.hasNextLine())
-                    contenido += "\n";
             return contenido;
         } catch (FileNotFoundException ex) {
             System.out.println("\nNo se encontro el archivo.\n");
