@@ -89,16 +89,16 @@ public class Main {
                             case "2": {
                                 // Prim
                                 if (grafo != null) {
-                                    
-                                    
+                                    // Matriz de Adyacencia de grafo no dirigido
+                                    grafo.matrizAdyacencia(false);
                                 }
                                 break;
                             }
                             case "3": {
                                 // Floyd
                                 if (grafo != null) {
-                                    
-                                    
+                                    // Matriz de Adyacencia de grafo dirigido
+                                    grafo.matrizAdyacencia(true);
                                 }
                                 break;
                             }
@@ -269,8 +269,7 @@ public class Main {
                             } catch (Exception e) {}
                         }   
                     }
-                    
-                    
+                    System.out.println("\nGrafo cargado exitosamente.\n");
                 } catch (Exception ex) {}
                 finally {
                     try {
@@ -285,18 +284,5 @@ public class Main {
         return grafo;
     }
     
-    public static TDAGrafo algoritmoPrim(TDAGrafo grafo) {
-        TDAGrafo prim = new TDAGrafo();
-        
-        
-        return prim;
-    }
-    
-    public static TDAGrafo algoritmoFloyd(TDAGrafo grafo) {
-        TDAGrafo prim = new TDAGrafo();
-        
-        
-        return prim;
-    }
     
 }
