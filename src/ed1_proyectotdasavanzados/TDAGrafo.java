@@ -44,7 +44,7 @@ public class TDAGrafo {
     // Si esta visitado busca el siguiente mas chiki
     // Marcar visitados los dos vertices
     // Buscar los visitados en la matriz de adyacencia
-    public void matrizAdyacencia(boolean dirigido) {
+    public String[][] matrizAdyacencia(boolean dirigido) {
         int size = vertices.size()+1;
         String adyacencia[][] = new String[size][size];
         for (int i = 0; i < size; i++) {
@@ -71,6 +71,7 @@ public class TDAGrafo {
             if (!dirigido)
                 adyacencia[v2][v1] = Integer.toString(aristas.get(i).getCosto());
         }
+        return adyacencia;
     }
     
     
@@ -84,4 +85,6 @@ public class TDAGrafo {
         }
         return visitado;
     }
+    
+    
 }
