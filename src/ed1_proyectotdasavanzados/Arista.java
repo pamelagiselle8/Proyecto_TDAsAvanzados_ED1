@@ -4,25 +4,25 @@ package ed1_proyectotdasavanzados;
 
 public class Arista {
     // Peso o costo de la arista
-    private int peso;
+    private int costo;
     // Vertices que conecta la arista
     private Vertice vertice1, vertice2;
 
     // Constructores
     public Arista() {}
-    public Arista(int peso, Vertice vertice1, Vertice vertice2) {
-        this.peso = peso;
+    public Arista(Vertice vertice1, Vertice vertice2, int peso) {
         this.vertice1 = vertice1;
         this.vertice2 = vertice2;
+        this.costo = peso;
     }
     
     // Getters y setters
-    public int getPeso() {
-        return peso;
+    public int getCosto() {
+        return costo;
     }
 
-    public void setPeso(int peso) {
-        this.peso = peso;
+    public void setCosto(int costo) {
+        this.costo = costo;
     }
 
     public Vertice getVertice1() {
@@ -44,9 +44,9 @@ public class Arista {
     // Metodos de administracion
     @Override
     public String toString() {
-        return "Arista {" + "peso " + peso + ", vertice1 "
-                          + vertice1.toString() + ", vertice2 "
-                          + vertice2.toString() + '}';
+        return vertice1.toString()
+                +","+ vertice2.toString()
+                +","+ costo +"\n";
     }
     
 }

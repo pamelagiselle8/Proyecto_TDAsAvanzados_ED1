@@ -76,19 +76,30 @@ public class Main {
                 }
                 case "2": {
                     // Algoritmos sobre Grafos
+                    TDAGrafo grafo = null;
                     subOpcion = menuGrafos();
                     while (!subOpcion.equals("4")) {
                         switch (subOpcion) {
                             case "1": {
                                 // Leer grafo de un archivo
+                                System.out.print("\nIngrese el nombre del archivo de texto: ");
+                                grafo = cargarGrafo(lea.nextLine());
                                 break;
                             }
                             case "2": {
                                 // Prim
+                                if (grafo != null) {
+                                    
+                                    
+                                }
                                 break;
                             }
                             case "3": {
                                 // Floyd
+                                if (grafo != null) {
+                                    
+                                    
+                                }
                                 break;
                             }
                             case "4": {
@@ -226,6 +237,66 @@ public class Main {
             System.out.println("\nNo se encontro el archivo binario.\n");
         }
         return arbol;
+    }
+    
+    public static TDAGrafo cargarGrafo(String path) {
+        // Windows -> "C:\\Drive\\GrafoPrim.txt"
+        // Mac -> /Users/pame/GrafoPrim.txt
+        File archivo = new File(path);
+        Scanner sc;
+        TDAGrafo grafo = null;
+        if (archivo.exists()) {
+            grafo = new TDAGrafo();
+            try {
+                BufferedReader bw = null;
+                try {
+                    bw = new BufferedReader(new FileReader(path));
+                    String linea = "";
+                    int cont = 0;
+                    while((linea = bw.readLine()) != null) {
+                        cont++;
+                        String datos[] = linea.split(",");
+                        if (cont == 1) {
+                            for (int i = 0; i < datos.length; i++)
+                                grafo.getVertices().add(new Vertice(datos[i]));
+                        }
+                        else {
+                            Vertice vertice1 = null, vertice2 = null;
+                            try {
+                                vertice1 = new Vertice(datos[0]);
+                                vertice2 = new Vertice(datos[1]);
+                                grafo.getAristas().add(new Arista(vertice1, vertice2, Integer.parseInt(datos[2])));
+                            } catch (Exception e) {}
+                        }   
+                    }
+                    
+                    
+                } catch (Exception ex) {}
+                finally {
+                    try {
+                        bw.close();
+                    } catch (Exception ex) {}
+                }
+            }
+            catch (Exception ex) {
+                System.out.println("\nNo se encontro el archivo.\n");
+            }
+        }
+        return grafo;
+    }
+    
+    public static TDAGrafo algoritmoPrim(TDAGrafo grafo) {
+        TDAGrafo prim = new TDAGrafo();
+        
+        
+        return prim;
+    }
+    
+    public static TDAGrafo algoritmoFloyd(TDAGrafo grafo) {
+        TDAGrafo prim = new TDAGrafo();
+        
+        
+        return prim;
     }
     
 }

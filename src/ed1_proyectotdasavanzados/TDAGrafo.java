@@ -3,16 +3,15 @@ package ed1_proyectotdasavanzados;
 
 import java.util.ArrayList;
 
-
-public class Grafo {
+public class TDAGrafo {
     // Lista de vertices del grafo
     private ArrayList<Vertice> vertices = new ArrayList();
     // Lista de aristas que conectan los vertices
     private ArrayList<Arista> aristas = new ArrayList();
 
     // Constructores
-    public Grafo() {}
-    public Grafo(ArrayList<Vertice> vertices, ArrayList<Arista> aristas) {
+    public TDAGrafo() {}
+    public TDAGrafo(ArrayList<Vertice> vertices, ArrayList<Arista> aristas) {
         this.vertices = vertices;
         this.aristas = aristas;
     }
@@ -37,8 +36,7 @@ public class Grafo {
     // Metodos de administracion
     @Override
     public String toString() {
-        return "Grafo {" + " vertices:\n" + vertices.toString()
-                         + ", aristas:\n" + aristas.toString() + '}';
+        return "\nVertices\n" + vertices.toString() +
+               "\nAristas\n" + aristas.toString();
     }
-    
 }
