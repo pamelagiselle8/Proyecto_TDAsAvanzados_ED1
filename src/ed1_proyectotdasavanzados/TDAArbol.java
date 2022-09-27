@@ -29,7 +29,8 @@ public class TDAArbol implements Serializable {
         return raiz.getFreq();
     }
     
-    
+    // Codifica el texto leido de un archivo de texto y
+    // guarda el codigo de Huffman y el arbol generado
     public String codificar(String texto) {
         codificarHojas(raiz, "");
         String codigo = "";

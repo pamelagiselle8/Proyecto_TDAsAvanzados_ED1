@@ -1,6 +1,8 @@
 
 package ed1_proyectotdasavanzados;
 
+import java.util.Objects;
+
 
 public class Arista {
     // Peso o costo de la arista
@@ -45,8 +47,16 @@ public class Arista {
     @Override
     public String toString() {
         return vertice1.toString()
-                +","+ vertice2.toString()
-                +","+ costo +"\n";
+                +" -> "+ vertice2.toString()
+                +" ("+ costo +")\n";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return ((Arista)obj).getVertice1() == vertice1
+                && ((Arista)obj).getVertice2() == vertice2
+                && ((Arista)obj).getCosto() == costo;
+    }
+    
     
 }

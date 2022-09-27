@@ -1,6 +1,8 @@
 
 package ed1_proyectotdasavanzados;
 
+import java.util.Objects;
+
 
 public class Vertice {
     // Etiqueta del vertice
@@ -25,6 +27,11 @@ public class Vertice {
     @Override
     public String toString() {
         return etiqueta;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return ((Vertice)obj).getEtiqueta().equals(etiqueta);
     }
     
 }

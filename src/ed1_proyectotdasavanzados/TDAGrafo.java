@@ -2,6 +2,7 @@
 package ed1_proyectotdasavanzados;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class TDAGrafo {
     // Lista de vertices del grafo
@@ -40,23 +41,64 @@ public class TDAGrafo {
                "\nAristas\n" + aristas.toString();
     }
     
-    // Buscar el mas chiki
-    // Si esta visitado busca el siguiente mas chiki
-    // Marcar visitados los dos vertices
-    // Buscar los visitados en la matriz de adyacencia
+    // Encuentra el grafo que visite todos los vertices con el recorrido mas corto posible
+    public TDAGrafo prim() {
+        // Ordenar las aristas de menor a mayor costo
+        aristas.sort(Comparator.comparing(Arista::getCosto));
+        TDAGrafo grafo = new TDAGrafo();
+        int i = 0;
+        
+        // Mientras queden vertices por visitar
+        while (vertices.size() != grafo.vertices.size()) {
+            boolean contieneV1 = false, contieneV2 = false;
+            Vertice vertice1 = aristas.get(i).getVertice1(),
+                    vertice2 = aristas.get(i).getVertice2();
+            if (grafo.getVertices().isEmpty()) {
+                // Agrega la primera arista (la mas corta) y sus dos vertices
+                grafo.getVertices().add(vertice1);
+                grafo.getVertices().add(vertice2);
+                grafo.getAristas().add(aristas.get(i));
+                i = 0;
+            }
+            else {
+                contieneV1 = grafo.getVertices().contains(vertice1);
+                contieneV2 = grafo.getVertices().contains(vertice2);
+                // Se agrega el nuevo vertice visitado
+                if (contieneV1 && !contieneV2) {
+                    grafo.getVertices().add(vertice2);
+                    grafo.getAristas().add(aristas.get(i));
+                    i = 0;
+                }
+                else if (!contieneV1 && contieneV2) {
+                    grafo.getVertices().add(vertice1);
+                    grafo.getAristas().add(aristas.get(i));
+                    i = 0;
+                }
+                else {
+                    // Si ambos vertices de la actual arista ya fueron visitados,
+                    // evaluara la siguiente arista mas corta.
+                    // Esto para evitar ciclos
+                    i++;
+                }
+            }
+        }
+        return grafo;
+    }
+    
     public String[][] matrizAdyacencia(boolean dirigido) {
         int size = vertices.size()+1;
         String adyacencia[][] = new String[size][size];
+        // Crear los indices con las etiquetas
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                adyacencia[i][j] = " ";
+                adyacencia[i][j] = "-";
                 if (i == 0 && j != 0)
                     adyacencia[i][j] = vertices.get(j-1).getEtiqueta();
                 if (j == 0 && i != 0)
                     adyacencia[i][j] = vertices.get(i-1).getEtiqueta();
-                
             }
         }
+        // Rellenar la matriz con los costos de las aristas
         for (int i = 0; i < aristas.size(); i++) {
             int v1 = 0, v2 = 0;
             for (int j = 0; j < adyacencia.length; j++) {
@@ -68,23 +110,11 @@ public class TDAGrafo {
                 }
             }
             adyacencia[v1][v2] = Integer.toString(aristas.get(i).getCosto());
-            if (!dirigido)
-                adyacencia[v2][v1] = Integer.toString(aristas.get(i).getCosto());
+            // Si el grafo es dirigido, entonces a -> b != a <- b
+             if (!dirigido)
+                 adyacencia[v2][v1] = Integer.toString(aristas.get(i).getCosto());
         }
         return adyacencia;
     }
-    
-    
-    public Object[][] visitados() {
-        int size = vertices.size();
-        Object visitado[][] = new Object[size][2];
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < 2; j++) {
-                visitado[i][j] = j == 0 ? vertices.get(i) : false;
-            }
-        }
-        return visitado;
-    }
-    
     
 }

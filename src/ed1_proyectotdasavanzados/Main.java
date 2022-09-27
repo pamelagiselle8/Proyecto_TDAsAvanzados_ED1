@@ -89,8 +89,13 @@ public class Main {
                             case "2": {
                                 // Prim
                                 if (grafo != null) {
-                                    // Matriz de Adyacencia de grafo no dirigido
-                                    grafo.matrizAdyacencia(false);
+                                    // Grafo no dirigido
+                                    System.out.println(grafo.toString());
+                                    TDAGrafo prim = grafo.prim();
+                                    System.out.println(prim.toString());
+                                }
+                                else {
+                                    System.out.println("\nAun no se ha cargado ningun grafo al sistema.\n");
                                 }
                                 break;
                             }
@@ -98,7 +103,10 @@ public class Main {
                                 // Floyd
                                 if (grafo != null) {
                                     // Matriz de Adyacencia de grafo dirigido
-                                    grafo.matrizAdyacencia(true);
+                                    // grafo.matrizAdyacencia(true);
+                                }
+                                else {
+                                    System.out.println("\nAun no se ha cargado ningun grafo al sistema.\n");
                                 }
                                 break;
                             }
@@ -284,5 +292,12 @@ public class Main {
         return grafo;
     }
     
-    
+    public static void imprimeMatriz(Object[][] matriz, int fila, int colum) {
+        for (int i = 0; i < fila; i++) {
+            for (int j = 0; j < colum; j++) {
+                System.out.print("[" + matriz[i][j] + "]");
+            }
+            System.out.println();
+        }
+    }
 }
