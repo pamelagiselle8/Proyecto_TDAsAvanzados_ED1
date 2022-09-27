@@ -117,4 +117,38 @@ public class TDAGrafo {
         return adyacencia;
     }
     
+    public String[][] floyd() {
+        String adyacencia[][] = matrizAdyacencia(true), infinito = "-";
+        // Se debe repetir el algoritmo para evaluar con los nuevos
+        // valores que se vayan sustituyendo en la matriz
+        for (int n = 0; n < adyacencia.length/2; n++) {
+            for (int i = 1; i < adyacencia.length; i++) {
+                for (int j = 1; j < adyacencia.length; j++) {
+                    // Evaluar cada columna con fila
+                    for (int k = 1; k < adyacencia.length; k++) {
+                        if (!adyacencia[i][j].equals(infinito)
+                                && !adyacencia[j][k].equals(infinito)
+                                && i != k && i != j && j != k) {
+                            // Si los valores a comparar no son infinito
+                            try {
+                                int suma = Integer.parseInt(adyacencia[i][j])
+                                       +Integer.parseInt(adyacencia[j][k]);
+                                if (adyacencia[i][k].equals(infinito)) {
+                                    // Si el valor actual es infinito,
+                                    // la suma siempre sera menor
+                                    adyacencia[i][k] = Integer.toString(suma);
+                                }
+                                else if (suma < Integer.parseInt(adyacencia[i][k])) {
+                                    // Si el valor actual es menor a la suma
+                                    adyacencia[i][k] = Integer.toString(suma);
+                                }
+                            } catch (Exception e) {}
+                        }
+                    }
+                }
+            }
+        }
+        return adyacencia;
+    }
+    
 }

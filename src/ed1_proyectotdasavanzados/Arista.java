@@ -47,7 +47,7 @@ public class Arista {
     @Override
     public String toString() {
         return vertice1.toString()
-                +" -> "+ vertice2.toString()
+                +" <-> "+ vertice2.toString()
                 +" ("+ costo +")\n";
     }
 

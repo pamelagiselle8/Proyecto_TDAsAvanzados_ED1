@@ -90,9 +90,9 @@ public class Main {
                                 // Prim
                                 if (grafo != null) {
                                     // Grafo no dirigido
-                                    System.out.println(grafo.toString());
                                     TDAGrafo prim = grafo.prim();
-                                    System.out.println(prim.toString());
+                                    String adyacencia[][] = prim.matrizAdyacencia(false);
+                                    imprimirMatriz((Object[][])adyacencia, adyacencia.length, adyacencia.length);
                                 }
                                 else {
                                     System.out.println("\nAun no se ha cargado ningun grafo al sistema.\n");
@@ -102,8 +102,9 @@ public class Main {
                             case "3": {
                                 // Floyd
                                 if (grafo != null) {
-                                    // Matriz de Adyacencia de grafo dirigido
-                                    // grafo.matrizAdyacencia(true);
+                                    // Grafo dirigido
+                                    String floyd[][] = grafo.floyd();
+                                    imprimirMatriz((Object[][])floyd, floyd.length, floyd.length);
                                 }
                                 else {
                                     System.out.println("\nAun no se ha cargado ningun grafo al sistema.\n");
@@ -292,10 +293,12 @@ public class Main {
         return grafo;
     }
     
-    public static void imprimeMatriz(Object[][] matriz, int fila, int colum) {
+    public static void imprimirMatriz(Object[][] matriz, int fila, int colum) {
+        System.out.println();
         for (int i = 0; i < fila; i++) {
             for (int j = 0; j < colum; j++) {
-                System.out.print("[" + matriz[i][j] + "]");
+                String dato = String.format("%2s", matriz[i][j]);
+                System.out.print("[" + dato + " ]");
             }
             System.out.println();
         }
